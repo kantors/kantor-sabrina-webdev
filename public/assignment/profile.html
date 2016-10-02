@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -10,24 +13,23 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
+        <p class="navbar-text pull-right">
+            <a href="website-list.html" class="navbar-link">
+                <i class="fa fa-check" aria-hidden="true"></i>
             </a>
-            <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-                </a>
-            </p>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-text pull-left" href="#">
+                Profile
+            </a>
+
         </div>
     </div>
 </nav>
 
 
-    <div class="container">
-        <h1>Profile</h1>
-
+<div class="container content-container">
+    <div class="row">
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
@@ -46,36 +48,25 @@
                 <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
             </div>
         </form>
-
-        <a class="btn btn-primary btn-block"
-           href="website-list.html">Websites</a>
-        <a class="btn btn-danger  btn-block"
-           href="login.html">Logout</a>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-lg btn-block"
+               href="website-list.html">Websites</a></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-danger btn-lg btn-block"
+               href="login.html">Logout</a></div>
+    </div>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </a>
-            </div>
+        <div class="row navbar-text pull-right">
+
+            <i class="fa fa-user" aria-hidden="true"></i>
+
         </div>
     </div>
 </nav>

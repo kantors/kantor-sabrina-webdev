@@ -2,6 +2,80 @@ input.form-control {
     margin-bottom: 5px;
 }
 
-body {
-    padding-top: 36px;
+html, body, .full-size {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.btn {
+    margin: 8px;
+}
+
+.content-container {
+    padding: 65px 30px;
+    height: 100%;
+}
+
+.row {
+    padding: 10px 0px;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+
+}
+
+.website-list li, .page-list li {
+    padding: 10px;
+}
+
+.side-panel {
+    border-right: solid 1px #d3d3d3;
+    height: 100%;
+}
+
+/* Nav Bar */
+.navbar-header {
+    padding: 0 5px;
+}
+
+.navbar-text {
+    display: inline-block;
+    padding: 0 8px 0px 0px;
+    font-size: 20px;
+}
+
+.navbar-text:hover {
+    text-decoration: none;
+    cursor: default;
+}
+
+/* Website List */
+
+.fa-cog, .fa-bars {
+    float: right;
+    padding: 0 5px;
+}
+
+/* Widget */
+.widget-list li, .widget-type-list li {
+    padding: 7px 0;
+}
+
+.widget-content {
+    display: inline-block;
+    width: 85%;
+}
+
+.widget-content img {
+    width: 60%;
+
+}
+
+@media (max-width: 768px) {
+    .side-panel {
+
+    }
+
 }
