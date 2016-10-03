@@ -6,6 +6,10 @@ html, body, .full-size {
     height: 100%;
     overflow-x: hidden;
 }
+a:hover, li a:hover {
+    text-decoration: none !important;
+    cursor: pointer;
+}
 
 .btn {
     margin: 8px;
