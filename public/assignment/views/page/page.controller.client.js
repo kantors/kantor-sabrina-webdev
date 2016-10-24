@@ -25,8 +25,9 @@
         var vm = this;
 
         vm.websiteId = $routeParams["wid"];
+        vm.userId = $routeParams["uid"];
         var pageId = parseInt($routeParams.pid);
-        var userId    = parseInt($routeParams.uid);
+
         vm.updatePage = updatePage;
         vm.removePage = removePage;
 
@@ -43,17 +44,33 @@
 
             PageService.updatePage(pageId ,page);
             console.log(vm.page);
-            $location.url("/user/"+userId+"/website/"+ vm.websiteId +"/page" );
+            $location.url("/user/"+vm.userId+"/website/"+ vm.websiteId +"/page" );
         }
 
         function removePage(wid) {
             PageService.removePage(wid);
-            $location.url("/user/"+userId+"/website/"+ vm.websiteId +"/page" );
+            $location.url("/user/"+vm.userId+"/website/"+ vm.websiteId +"/page" );
         }
     }
 
-    function NewPageController($routeParams, PageService) {
+    function NewPageController($routeParams, PageService, $location) {
         var vm = this;
+        var userId = parseInt($routeParams.uid);
+        var websiteId = parseInt($routeParams.wid);
+        var pageId = parseInt($routeParams.pid);
+        vm.createPage = createPage;
 
-    }
+        function init() {
+            vm.pages = PageService.findPageByWebsiteId(websiteId);
+
+            vm.page = PageService.findPageById(pageId);
+        }
+        init();
+
+        function createPage(page) {
+            page._id = (new Date()).getTime();
+            page.uid = userId;
+            PageService.createPage(page);
+            $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+        }}
 })();
