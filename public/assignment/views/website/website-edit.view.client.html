@@ -1,0 +1,60 @@
+<div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <p class="pull-left navbar-text">
+                <a class=" navbar-link " href="website-list.view.client.html">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a></p>
+            <div class="navbar-header">
+
+                <a class="navbar-text" href="#">
+                    Edit Website
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="row full-size">
+
+        <div class="side-panel hidden-xs col-sm-4 content-container">
+            <div ng-repeat="website in model.websites">
+                <ul>
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                        <li>{{website.name}}</li>
+                    </a></ul>
+
+            </div>
+        </div>
+
+        <div class="col-sm-8 content-container">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input ng-model="model.website.name" type="text" class="form-control" id="name"
+                           placeholder="{{model.website.name}}">
+                </div>
+                <div ng-model="model.website.description" class="form-group">
+                    <label for="description">Description</label>
+                    <textarea ng-model="model.website.description" class="form-control" rows="5" id="description"
+                              placeholder="{{model.website.description}}"></textarea>
+                </div>
+            </form>
+            <a ng-click="model.updateWebsite(model.website)" role="button" class="btn btn-primary btn-lg btn-block">Update</a>
+            <a ng-click="model.removeWebsite(model.website._id)" role="button"
+               class="btn btn-danger btn-primary btn-lg btn-block">Delete</a>
+
+
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row navbar-text pull-right">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+        </div>
+    </nav>
+</div>

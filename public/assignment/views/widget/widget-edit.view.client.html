@@ -1,0 +1,56 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="pull-left navbar-text">
+            <a  class=" navbar-link " href="widget-list.view.client.html">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </a></p>
+        <p class="navbar-text pull-right">
+            <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+        </p>
+        <div class="navbar-header">
+
+            <a class="navbar-text" href="#">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container content-container">
+    <div ng-switch="model.widget.widgetType">
+        <div ng-switch-when="HEADER">
+            <ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
+        </div>
+        <div ng-switch-when="HTML">
+            <ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
+        </div>
+        <div ng-switch-when="IMAGE">
+
+            <ng-include src="'views/widget/widget-image.view.client.html'"></ng-include>
+        </div>
+        <div ng-switch-when="YOUTUBE">
+
+            <ng-include src="'views/widget/widget-youtube.view.client.html'"></ng-include>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a ng-click="model.removeWidget(model.widget._id)" role="button" class="btn btn-primary btn-danger btn-lg btn-block">Delete</a>
+        </div>
+
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text pull-right">
+
+            <i class="fa fa-user" aria-hidden="true"></i>
+
+        </div>
+    </div>
+</nav>

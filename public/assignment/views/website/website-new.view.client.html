@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+        <a class="navbar-link" href="#/user/{{model.userId}}/website">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </a></p>
+        <p class="navbar-text pull-right">
+            <a ng-click="model.createWebsite(model.website)" class="navbar-link">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-text">
+                New Website
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="row full-size">
+    <div class="side-panel hidden-xs col-sm-4 content-container">
+        <div ng-repeat="website in model.websites">
+            <ul>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                    <li>{{website.name}}</li>
+                </a></ul>
+
+        </div>
+    </div>
+    <div class="col-sm-8 container content-container">
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model="model.website.name" type="text" class="form-control" id="name"  placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="model.website.description" class="form-control" placeholder="Lorem" rows="5" id="description"></textarea>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text pull-right">
+
+            <i class="fa fa-user" aria-hidden="true"></i>
+
+        </div>
+    </div>
+</nav>
