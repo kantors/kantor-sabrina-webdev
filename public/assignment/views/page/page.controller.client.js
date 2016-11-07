@@ -14,10 +14,17 @@
         vm.websiteId = $routeParams["wid"];
         vm.userId = $routeParams["uid"];
 
-            function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+        function init() {
+            var promise = PageService.findPageByWebsiteId(vm.websiteId);
+            promise.success(function (pages) {
+                vm.pages = pages;
+            }).error(function () {
+
+            });
+
 
         }
+
         init();
     }
 
@@ -32,24 +39,37 @@
         vm.removePage = removePage;
 
         function init() {
-            vm.page = PageService.findPageById(pageId);
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+
+            var pagePromise = PageService.findPageById(pageId);
+            pagePromise.success(function (page) {
+                vm.page = page;
+            }).error(function () {
+
+            });
+
+            var pagesPromise = PageService.findPageByWebsiteId(vm.websiteId);
+            pagesPromise.success(function (pages) {
+                vm.pages = pages;
+            }).error(function () {
+
+            });
+
 
 
         }
+
         init();
 
 
         function updatePage(page) {
-
-            PageService.updatePage(pageId ,page);
+            PageService.updatePage(pageId, page);
             console.log(vm.page);
-            $location.url("/user/"+vm.userId+"/website/"+ vm.websiteId +"/page" );
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
 
         function removePage(wid) {
             PageService.removePage(wid);
-            $location.url("/user/"+vm.userId+"/website/"+ vm.websiteId +"/page" );
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
     }
 
@@ -65,12 +85,15 @@
 
             vm.page = PageService.findPageById(pageId);
         }
+
         init();
+
 
         function createPage(page) {
             page._id = (new Date()).getTime();
             page.uid = userId;
             PageService.createPage(page);
             $location.url("/user/" + userId + "/website/" + websiteId + "/page");
-        }}
+        }
+    }
 })();

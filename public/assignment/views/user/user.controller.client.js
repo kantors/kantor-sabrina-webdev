@@ -12,14 +12,21 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            console.log(username);
-            console.log(password);
-            if (user === null) {
-                vm.error = "No such user";
-            } else {
-                $location.url("/user/" + user._id);
-            }
+
+            var promise = UserService.findUserByCredentials(username, password);
+
+            promise.success(function (user) {
+                if (user === '0') {
+                    vm.error = "No such user";
+                } else {
+                    $location.url("/user/" + user._id);
+                }
+
+            }).error(function () {
+                console.log("errrooo");
+            });
+
+
         }
     }
 
@@ -28,21 +35,12 @@
         vm.register = register;
 
         function register(username, password) {
-            if (username !== undefined || password !== undefined) {
-                var user = {
-                    _id: Date.now().toString(),
-                    username: username,
-                    password: password,
-                    firstName: username,
-                    lastName: "Wonder"
-                };
-                UserService.createUser(user);
+          UserService.createUser(username, password).success(function(user){
+              $location.url("/user/"+ user._id);
+          })
+              .error(function(error){
 
-                $location.url("/user/" + user._id);
-            }
-            else {
-                vm.error = "Missing field";
-            }
+              })
 
         }
     }
@@ -51,11 +49,34 @@
     function ProfileController($routeParams, UserService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
-
+        vm.updateUser = updateUser;
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService.findUserById(vm.userId).success(function (user) {
+                if (user === '0') {
+                    vm.error = "No such user";
+                } else {
+                    vm.user = user;
+                }
+
+            }).error(function () {
+                console.log("errrooo");
+            });
+
         }
 
         init();
+
+        function updateUser() {
+            UserService.updateUser(vm.user);
+
+        }
+
+        function deleteUser() {
+            UserService.deleteUser(vm.user).success(function(){
+                $location.url("/login");
+            }).error(function () {
+                console.log("errrooo");
+            });
+        }
     }
 })();

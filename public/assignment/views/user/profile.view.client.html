@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a class="navbar-link">
+            <a ng-click="model.updateUser()" class="navbar-link">
                 <i class="fa fa-check" aria-hidden="true"></i>
             </a>
         </p>
@@ -18,33 +18,41 @@
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="{{model.user.username}}">
+                <input ng-model="model.user.username" type="text" class="form-control" id="username"
+                       placeholder="{{model.user.username}}">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder= "{{model.user.firstName}}@gmail.com">
+                <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="{{model.user.firstName}}@gmail.com">
             </div>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder= "{{model.user.firstName}}">
+                <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="{{model.user.firstName}}">
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder= "{{model.user.lastName}}">
+                <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="{{model.user.lastName}}">
             </div>
         </form>
     </div>
 </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-primary btn-block"
-               href="#/user/{{model.userId}}/website">Websites</a></div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary btn-block"
+           href="#/user/{{model.userId}}/website">Websites</a></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-danger btn-block"
+           href="#/login">Logout</a>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-danger btn-block"
-               href="#/login">Logout</a>
-    </div></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deleteUser()">Unregister</a>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

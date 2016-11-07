@@ -13,9 +13,17 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            var promise = WebsiteService.findWebsitesByUser(vm.userId);
+            promise.success(function (websites) {
+                vm.websites = websites;
+
+
+            }).error(function () {
+
+            });
 
         }
+
         init();
     }
 
@@ -27,20 +35,36 @@
         vm.removeWebsite = removeWebsite;
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(websiteId);
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log(vm.websites);
+
+            var websitePromise = WebsiteService.findWebsiteById(websiteId)
+            websitePromise.success(function (website) {
+                vm.website = website;
+            }).error(function () {
+
+            });
+
+            var websitesPromise = WebsiteService.findWebsitesByUser(vm.userId);
+            websitesPromise.success(function (websites) {
+                vm.websites = websites;
+            }).error(function () {
+
+            });
+
+
         }
+
         init();
 
         function updateWebsite(website) {
             WebsiteService.updateWebsite(website);
-            $location.url("/user/"+vm.userId+"/website");
+            $location.url("/user/" + vm.userId + "/website");
+
+
         }
 
         function removeWebsite(wid) {
             WebsiteService.removeWebsite(wid);
-            $location.url("/user/"+vm.userId+"/website");
+            $location.url("/user/" + vm.userId + "/website");
         }
     }
 
@@ -52,16 +76,27 @@
 
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            var promise = WebsiteService.findWebsitesByUser(vm.userId);
+            promise.success(function (websites) {
+                vm.websites = websites;
+
+            }).error(function () {
+
+            });
         }
 
         init();
 
         function createWebsite(website) {
 
-            WebsiteService.createWebsite(userId, website);
+            var promise = WebsiteService.createWebsite(userId, website);
+            promise.success(function () {
+                $location.url("/user/" + userId + "/website");
 
-            $location.url("/user/"+userId+"/website");
+            }).error(function () {
+
+            });
+
         }
     }
 })();

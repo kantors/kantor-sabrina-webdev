@@ -20,7 +20,14 @@
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPage(vm.pageId);
+            var promise = WidgetService.findWidgetsForPage(vm.pageId);
+            promise.success(function (widgets) {
+                vm.widgets = widgets;
+
+            }).error(function () {
+
+            });
+
 
         }
 
@@ -48,17 +55,26 @@
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
         vm.widgetId = $routeParams.wgid;
+
         vm.updateWidget = updateWidget;
         vm.removeWidget = removeWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            var promise = WidgetService.findWidgetById(vm.widgetId);
+            promise.success(function (widget) {
+                vm.widget = widget;
+
+
+            }).error(function () {
+
+            });
         }
 
         init();
 
+
         function updateWidget(widget) {
-            WidgetService.updateWidget(vm.widgetId, widget);
+            WidgetService.updateWidget(widget);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
         }
 
@@ -80,17 +96,20 @@
         vm.createWidget = createWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            var promise = WidgetService.findWidgetById(vm.widgetId);
+            promise.success(function (widget) {
+                vm.widget = widget;
+            }).error(function () {
+
+            });
         }
 
         init();
 
 
         function createWidget(widgetType) {
-            var widgetID = Date.now().toString();
             if (widgetType === "HEADER") {
                 var widget = {
-                    "_id": widgetID,
                     "widgetType": "HEADER",
                     "pageId": vm.pageId,
                     "size": 1,
@@ -101,7 +120,6 @@
 
             else if (widgetType === "HTML") {
                 var widget = {
-                    "_id":  widgetID,
                     "widgetType": "HTML",
                     "pageId": vm.pageId,
                     "size": 1,
@@ -111,7 +129,6 @@
             }
             else if (widgetType === "IMAGE") {
                 var widget = {
-                    "_id":  widgetID,
                     "widgetType": "IMAGE",
                     "pageId": vm.pageId,
                     "width": "100%",
@@ -122,7 +139,6 @@
 
             else if (widgetType === "YOUTUBE") {
                 var widget = {
-                    "_id":  widgetID,
                     "widgetType": "YOUTUBE",
                     "pageId": vm.pageId,
                     "width": "100%",
@@ -131,9 +147,18 @@
                 }
 
             }
+            var promise = WidgetService.createWidget(widget);
+            promise.success(function (widget) {
+                console.log(widget);
+                widgetId = widget._id;
+                vm.widgetId = widgetId;
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
 
-            WidgetService.createWidget(widget);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" +  widgetID);
+            }).error(function () {
+
+            });
+
+
         }
 
     }

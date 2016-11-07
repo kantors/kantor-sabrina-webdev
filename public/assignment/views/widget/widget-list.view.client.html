@@ -1,11 +1,12 @@
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <p class="pull-left navbar-text"><a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+        <p class="pull-left navbar-text"><a class="navbar-link"
+                                            href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a></p>
         <p class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+               class="navbar-link">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </a>
         </p>
@@ -20,11 +21,12 @@
 
 
 <div class="container content-container">
-    <div class="row">
-
+    <div class="sortable-Widgets row ">
         <div ng-switch="widget.widgetType"
              ng-repeat="widget in model.widgets">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
+
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+               class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <div ng-switch="widget.size" ng-switch-when="HEADER">
@@ -57,7 +59,6 @@
             <span class="glyphicon glyphicon-triangle-right"></span>
             <span class="glyphicon glyphicon-eye-open"></span>
         </div>
-
 
         <div class=" navbar-text pull-right">
 
