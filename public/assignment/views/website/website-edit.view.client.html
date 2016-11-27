@@ -3,7 +3,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <p class="pull-left navbar-text">
-                <a class=" navbar-link " href="website-list.view.client.html">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
                 </a></p>
             <div class="navbar-header">
@@ -26,6 +26,7 @@
                     </a></ul>
 
             </div>
+
         </div>
 
         <div class="col-sm-8 content-container">
@@ -42,7 +43,7 @@
                 </div>
             </form>
             <a ng-click="model.updateWebsite(model.website)" role="button" class="btn btn-primary btn-lg btn-block">Update</a>
-            <a ng-click="model.removeWebsite(model.website._id)" role="button"
+            <a ng-click="model.deleteWebsite()" role="button"
                class="btn btn-danger btn-primary btn-lg btn-block">Delete</a>
 
 

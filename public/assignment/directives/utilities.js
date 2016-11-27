@@ -30,11 +30,12 @@
         }
     }
 
-    function sortableController (WidgetService) {
+    function sortableController (WidgetService, $routeParams) {
         var vm = this;
         vm.sort = sort;
+      var pageId = $routeParams.pid;
 
-        function sort(start, end) {
+        function sort(pageId, start, end) {
             console.log([start, end]);
             WidgetService.sort(start, end);
         }

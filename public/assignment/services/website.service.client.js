@@ -20,7 +20,7 @@
             "findWebsitesByUser": findWebsitesByUser,
             "findWebsiteById": findWebsiteById,
             "updateWebsite": updateWebsite,
-            "removeWebsite": deleteWebsite
+            "deleteWebsite": deleteWebsite,
         };
 
 
@@ -39,6 +39,7 @@
         }
 
         function findWebsiteById(websiteId) {
+            console.log(websiteId);
             var url = "/api/website/" + websiteId;
             return $http.get(url);
         }
@@ -49,8 +50,10 @@
 
         }
 
-        function deleteWebsite(websiteId) {
-            var url = "/api/website/" + websiteId;
+        function deleteWebsite(websiteId, userId) {
+            console.log(websiteId + " client webId");
+            console.log(userId + " client userId");
+            var url = "/api/user/" + userId + "/website/" + websiteId;
             $http.delete(url);
         }
     }

@@ -6,8 +6,7 @@
  */
 (function () {
     angular.module("WebAppMaker").controller("PageListController", PageListController)
-        .controller("EditPageController", EditPageController)
-        .controller("NewPageController", NewPageController);
+        .controller("EditPageController", EditPageController);
 
     function PageListController($routeParams, $location, PageService) {
         var vm = this;
@@ -17,11 +16,10 @@
         function init() {
             var promise = PageService.findPageByWebsiteId(vm.websiteId);
             promise.success(function (pages) {
-                vm.pages = pages;
+
+                vm.pages = pages.pages;
             }).error(function () {
-
             });
-
 
         }
 
@@ -33,15 +31,17 @@
 
         vm.websiteId = $routeParams["wid"];
         vm.userId = $routeParams["uid"];
-        var pageId = parseInt($routeParams.pid);
+        var pageId = $routeParams.pid;
 
         vm.updatePage = updatePage;
         vm.removePage = removePage;
+        vm.createPage = createPage;
 
         function init() {
 
             var pagePromise = PageService.findPageById(pageId);
             pagePromise.success(function (page) {
+                console.log(page);
                 vm.page = page;
             }).error(function () {
 
@@ -51,49 +51,40 @@
             pagesPromise.success(function (pages) {
                 vm.pages = pages;
             }).error(function () {
-
             });
-
-
-
         }
 
         init();
 
 
-        function updatePage(page) {
-            PageService.updatePage(pageId, page);
+        function updatePage() {
             console.log(vm.page);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            var pagePromise = PageService.updatePage(pageId, vm.page);
+            pagePromise.success(function () {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+
+            }).error(function () {
+
+            });
+
         }
 
         function removePage(wid) {
             PageService.removePage(wid);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
-    }
-
-    function NewPageController($routeParams, PageService, $location) {
-        var vm = this;
-        var userId = parseInt($routeParams.uid);
-        var websiteId = parseInt($routeParams.wid);
-        var pageId = parseInt($routeParams.pid);
-        vm.createPage = createPage;
-
-        function init() {
-            vm.pages = PageService.findPageByWebsiteId(websiteId);
-
-            vm.page = PageService.findPageById(pageId);
-        }
-
-        init();
 
 
-        function createPage(page) {
-            page._id = (new Date()).getTime();
-            page.uid = userId;
-            PageService.createPage(page);
-            $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+        function createPage() {
+            var pagePromise = PageService.createPage(vm.websiteId, vm.page);
+            pagePromise.success(function () {
+               $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+
+            }).error(function () {
+
+            });
+
         }
     }
+
 })();

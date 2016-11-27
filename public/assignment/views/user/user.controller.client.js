@@ -10,7 +10,6 @@
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
-
         function login(username, password) {
 
             var promise = UserService.findUserByCredentials(username, password);
@@ -23,7 +22,8 @@
                 }
 
             }).error(function () {
-                console.log("errrooo");
+
+                vm.error = "No such user";
             });
 
 
@@ -50,6 +50,7 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
         function init() {
             UserService.findUserById(vm.userId).success(function (user) {
                 if (user === '0') {
@@ -59,7 +60,8 @@
                 }
 
             }).error(function () {
-                console.log("errrooo");
+                vm.error = "No such user";
+
             });
 
         }
@@ -67,12 +69,13 @@
         init();
 
         function updateUser() {
-            UserService.updateUser(vm.user);
 
+            UserService.updateUser(vm.user);
         }
 
         function deleteUser() {
-            UserService.deleteUser(vm.user).success(function(){
+
+            UserService.deleteUser(vm.user._id).success(function(){
                 $location.url("/login");
             }).error(function () {
                 console.log("errrooo");

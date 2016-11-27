@@ -29,12 +29,10 @@
         return api;
 
 
-        function createWidget(widget) {
-            console.log("sadd");
-            var url = "/api/page/" + widget.pageId + "/widget";
-            console.log(url);
-            return $http.post(url, widget);
+        function createWidget(pageId, widget) {
 
+            var url = "/api/page/" + pageId + "/widget";
+            return $http.post(url, widget);
         }
 
 
@@ -52,17 +50,17 @@
 
 
         function updateWidget( widget) {
-            var url = "/api/widget/" + widget._id;
-            $http.put(url, widget);
+           var url = "/api/widget/" + widget._id;
+            return $http.put(url, widget);
         }
 
-        function removeWidget(widgetId) {
-            var url = "/api/widget/" + widgetId;
+        function removeWidget(pageId, widgetId) {
+            var url = "/api/page/"+ pageId + "/widget/" + widgetId;
             $http.delete(url);
         }
 
-        function sort(start, end) {
-            var url = "/api/widget?start=START&end=END"
+        function sort(pageId, start, end) {
+            var url = "/api/"+ pageId +"widget?start=START&end=END";
             url = url.replace("START", start)
               .replace("END", end);
             $http.put(url);

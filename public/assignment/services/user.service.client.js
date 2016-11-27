@@ -21,7 +21,7 @@
             "findUserById": findUserById,
             "findUserByUsername": findUserByUsername,
             "updateUser": updateUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
         };
         return api;
 
@@ -37,7 +37,9 @@
         }
 
         function findUserByCredentials(username, password) {
+
             var url = '/api/user?username=' + username + '&password=' + password;
+
             return $http.get(url);
 
         }
@@ -55,14 +57,17 @@
         }
 
         function updateUser(user) {
+
             var url = "/api/user/" + user._id;
-            $http.put(url, user);
+            return $http.put(url, user);
+
 
         }
 
         function deleteUser(userId) {
-            var url = "/api/user" + userId
-            $http.delete(url);
+            console.log('h');
+            var url = "/api/user/" + userId;
+           return $http.delete(url);
 
         }
     }

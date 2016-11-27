@@ -8,6 +8,7 @@
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
                class="navbar-link">
                 <i class="fa fa-plus" aria-hidden="true"></i>
+
             </a>
         </p>
         <div class="navbar-header">
@@ -38,7 +39,7 @@
                 <h6 ng-switch-when="6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when="YOUTUBE">
-                <iframe width="{{widget.width}}" height="405"
+                <iframe width="{{widget.width}}" class="youtube-widget"
                         ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="pull-left navbar-text">
-            <a  class=" navbar-link " href="/user/{{vm.userId }}/website/ {{vm.websiteId }}/page/{{vm.pageId}}/widget">
+            <a  class=" navbar-link " href="#/user/{{model.userId }}/website/ {{model.websiteId }}/page/{{model.pageId}}/widget">
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </a></p>
         <p class="navbar-text pull-right">
@@ -25,7 +25,7 @@
             <ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
         </div>
         <div ng-switch-when="HTML">
-            <ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
+            <ng-include src="'views/widget/widget-html.view.client.html'"></ng-include>
         </div>
         <div ng-switch-when="IMAGE">
 
@@ -34,6 +34,16 @@
         <div ng-switch-when="YOUTUBE">
 
             <ng-include src="'views/widget/widget-youtube.view.client.html'"></ng-include>
+        </div>
+        <div ng-switch-when="TEXT">
+            Text
+            <input ng-model="model.widget.text" class="form-control"/>
+            Rows
+            <input ng-model="model.widget.rows" class="form-control" type="number"/>
+            Placeholder
+            <input ng-model="model.widget.placeholder" class="form-control"/>
+            Formatted
+            <input ng-model="model.widget.formatted" type="checkbox"/>
         </div>
     </div>
 

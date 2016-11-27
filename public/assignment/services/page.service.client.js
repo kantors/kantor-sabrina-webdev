@@ -30,6 +30,7 @@
         }
 
         function findPageById(pageId) {
+            console.log(pageId);
             var url = "/api/page/" + pageId;
             return $http.get(url);
         }
@@ -37,7 +38,7 @@
 
         function updatePage(pageId, page) {
             var url = "/api/page/" + pageId;
-            $http.put(url, page);
+            return $http.put(url, page);
 
 
         }
