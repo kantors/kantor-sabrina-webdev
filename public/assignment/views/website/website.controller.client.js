@@ -48,7 +48,7 @@
 
                 vm.website = website;
             }).error(function (error) {
-                console.log("fuck");
+
             });
         }
 
